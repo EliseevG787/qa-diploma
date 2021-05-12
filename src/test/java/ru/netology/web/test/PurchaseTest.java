@@ -49,6 +49,7 @@ class PurchaseTest {
 
     @Nested
     class PaymentTest {
+
         @Test
         void shouldPaymentWithApprovedCard() {
             paymentPage.buy();
@@ -149,6 +150,17 @@ class PurchaseTest {
             paymentPage.buy();
             paymentPage.dataInput(approvedNumber, month, year, name, blankCVC);
             paymentPage.emptyCVC();
+        }
+
+        @Test
+        void shouldSubmittingFormWithInvalidData() {
+            paymentPage.buy();
+            paymentPage.dataInput(unformatNumber, incorrectMonth, expiredDate, incorrectName, incorrectCVC);
+            paymentPage.unformattedNumber();
+            paymentPage.invalidMonth();
+            paymentPage.expiredСard();
+            paymentPage.invalidName();
+            paymentPage.invalidCVC();
         }
 
         @Test
@@ -270,7 +282,18 @@ class PurchaseTest {
         }
 
         @Test
-        void shouldSubmittingEmptyForm() {
+        void shouldSubmittingCreditFormWithInvalidData() {
+            paymentPage.buyOnCredit();
+            paymentPage.dataInput(unformatNumber, incorrectMonth, expiredDate, incorrectName, incorrectCVC);
+            paymentPage.unformattedNumber();
+            paymentPage.invalidMonth();
+            paymentPage.expiredСard();
+            paymentPage.invalidName();
+            paymentPage.invalidCVC();
+        }
+
+        @Test
+        void shouldSubmittingEmptyCreditForm() {
             paymentPage.buyOnCredit();
             paymentPage.dataInput("", "", "", "", "");
             paymentPage.emptyNumber();
