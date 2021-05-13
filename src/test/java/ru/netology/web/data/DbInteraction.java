@@ -72,9 +72,9 @@ public class DbInteraction {
 
     @SneakyThrows
     public static Statement getStatement() {
-        String url = System.getProperty("url");
-        String username = System.getProperty("username");
-        String password = System.getProperty("password");
+        val url = System.getProperty("url");
+        val username = System.getProperty("username");
+        val password = System.getProperty("password");
         val conn = DriverManager.getConnection(url, username, password);
         val statement = conn.createStatement();
         return statement;
@@ -101,7 +101,6 @@ public class DbInteraction {
         }
         return null;
     }
-
 
     @SneakyThrows
     public static void cleanDatabase() {
