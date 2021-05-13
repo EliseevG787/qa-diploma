@@ -11,37 +11,29 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class PaymentPage {
-    // fieldset > div:nth-child(3) > span > span:nth-child(1) input
     private SelenideElement buyButton = $$(".button").find(exactText("Купить"));
     private SelenideElement buyOnCreditButton = $$(".button").find(exactText("Купить в кредит"));
-    private SelenideElement cardNumber = $("[placeholder='0000 0000 0000 0000']");
+    private SelenideElement continueButton = $$(".button").find(exactText("Продолжить"));
 
-    private SelenideElement owner = $$("input").get(3);
-    // private SelenideElement owner = $("fieldset :nth-child(3) input");
+    private SelenideElement cardNumber = $("[placeholder='0000 0000 0000 0000']");
     private SelenideElement cardMonth = $("[placeholder='08']");
     private SelenideElement cardYear = $("[placeholder='22']");
-    private SelenideElement invalidYear = $("fieldset > div:nth-child(2) span:nth-child(2) .input__sub");
-
+    private SelenideElement owner = $$("input").get(3);
     private SelenideElement cardCVC = $("[placeholder='999']");
-    private SelenideElement continueButton = $$(".button").find(exactText("Продолжить"));
-    private SelenideElement emptyCardNumber = $("[placeholder='0000 0000 0000 0000'] .input__sub");
-    private SelenideElement invalidCardNumber = $(" fieldset > div:nth-child(1) .input__sub");
 
-    private SelenideElement emptyMonth = $("[placeholder='08'] .input__sub");
-    private SelenideElement invalidMonth = $("fieldset > div:nth-child(2) span:nth-child(1) .input__sub");
-
-
-    private SelenideElement emptyYear = $("[placeholder='22'] .input__sub");
-    private SelenideElement invalidOwner = $("fieldset > div:nth-child(3) span:nth-child(1) .input__sub");
-
-    private SelenideElement errorCVC = $("fieldset div:nth-child(3) span:nth-child(2) .input__sub");
-    private SelenideElement emptyCVC = $("[placeholder='999'] .input__sub");
-    private SelenideElement errorNotification = $(byText("Ошибка! Банк отказал в проведении операции."));
-    private SelenideElement successNotification = $(byText("Операция одобрена Банком."));
     private SelenideElement paymentByCard = $(byText("Оплата по карте"));
     private SelenideElement purchaseOnCredit = $(byText("Кредит по данным карты"));
-    //  withText("Успешная авторизация")success message
-
+    private SelenideElement successNotification = $(byText("Операция одобрена Банком."));
+    private SelenideElement errorNotification = $(byText("Ошибка! Банк отказал в проведении операции."));
+    private SelenideElement invalidCardNumber = $(" fieldset > div:nth-child(1) .input__sub");
+    private SelenideElement invalidYear = $("fieldset > div:nth-child(2) span:nth-child(2) .input__sub");
+    private SelenideElement invalidMonth = $("fieldset > div:nth-child(2) span:nth-child(1) .input__sub");
+    private SelenideElement invalidOwner = $("fieldset > div:nth-child(3) span:nth-child(1) .input__sub");
+    private SelenideElement errorCVC = $("fieldset div:nth-child(3) span:nth-child(2) .input__sub");
+    private SelenideElement emptyCardNumber = $("[placeholder='0000 0000 0000 0000'] .input__sub");
+    private SelenideElement emptyMonth = $("[placeholder='08'] .input__sub");
+    private SelenideElement emptyYear = $("[placeholder='22'] .input__sub");
+    private SelenideElement emptyCVC = $("[placeholder='999'] .input__sub");
 
     public void dataInput(String number, String month, String year, String name, String CVC) {
         cardNumber.setValue(number);
@@ -130,7 +122,7 @@ public class PaymentPage {
         errorCVC.shouldBe(Condition.visible);
         errorCVC.shouldHave(exactText("Поле обязательно для заполнения"));
     }
-
+}
 
 //    private SelenideElement loginField = $("[data-test-id=login] input");
 //    private SelenideElement passwordField = $("[data-test-id=password] input");
@@ -174,4 +166,4 @@ public class PaymentPage {
 //        emptyLogin.shouldBe(visible);
 //        emptyPassword.shouldBe(visible);
 //    }
-}
+//}
