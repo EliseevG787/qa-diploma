@@ -31,7 +31,6 @@ public class DataHelper {
         return new declinedСreditСardInfo("4444 4444 4444 4442", "DECLINED");
     }
 
-
     public static String generateMonth() {
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM");
