@@ -5,7 +5,7 @@
 ``` 
 docker-compose up -d
 ```
-###Запуск для MySQL
+### Запуск для MySQL
 
 Запустить SUT
 ``` 
@@ -17,7 +17,7 @@ gradlew clean test -Dtest.db.url=jdbc:mysql://localhost:3306/app
 ```
  
 
-###Запуск для Postgres
+### Запуск для Postgres
 
 Запустить SUT
 ```
@@ -28,11 +28,11 @@ java -Dspring.datasource.url=jdbc:postgresql://localhost:5432/postgres -jar arti
 gradlew clean test -Durl=jdbc:postgresql://localhost:5432/postgres
 ```
 
-###Остановить и удалить контейнеры
+### Остановить и удалить контейнеры
 ``` 
 docker-compose down
 ``` 
-###Формировать Allure report для отчёта
+### Формировать Allure report для отчёта
 ```
 gradlew allureReport
 gradlew allureServe
