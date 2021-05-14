@@ -81,7 +81,7 @@ public class DbInteraction {
     }
 
     @SneakyThrows
-    public static String paymentStatus() {
+    public static String getPaymentStatus() {
         val statement = getStatement();
         val rs = statement.executeQuery("SELECT * FROM payment_entity ORDER BY created DESC LIMIT 1;");
         if (rs.next()) {
@@ -92,7 +92,7 @@ public class DbInteraction {
     }
 
     @SneakyThrows
-    public static String creditStatus() {
+    public static String getCreditStatus() {
         val statement = getStatement();
         val rs = statement.executeQuery("SELECT * FROM credit_request_entity ORDER BY created DESC LIMIT 1;");
         if (rs.next()) {
