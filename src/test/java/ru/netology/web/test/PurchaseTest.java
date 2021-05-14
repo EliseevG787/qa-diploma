@@ -57,6 +57,8 @@ class PurchaseTest {
             paymentPage.checkPaymentSuccess();
             String status = DbInteraction.getPaymentStatus();
             assertEquals("APPROVED", status);
+            String amount = DbInteraction.getPaymentAmount();
+            assertEquals("45000", amount);
         }
 
         @Test
