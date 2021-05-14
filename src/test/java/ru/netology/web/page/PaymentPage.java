@@ -44,81 +44,81 @@ public class PaymentPage {
         continueButton.click();
     }
 
-    public void buy() {
+    public void checkPayment() {
         buyButton.click();
         paymentByCard.shouldBe(Condition.visible);
     }
 
-    public void buyOnCredit() {
+    public void checkPaymentOnCredit() {
         buyOnCreditButton.click();
         purchaseOnCredit.shouldBe(Condition.visible);
     }
 
-    public void successfulPayment() {
+    public void checkPaymentSuccess() {
         successNotification.shouldBe(Condition.visible, Duration.ofMillis(15000));
     }
 
-    public void paymentDeclined() {
+    public void checkPaymentDeclined() {
         errorNotification.shouldBe(Condition.visible, Duration.ofMillis(15000));
     }
 
-    public void unformattedNumber() {
+    public void checkUnformattedNumber() {
         invalidCardNumber.shouldBe(Condition.visible);
         invalidCardNumber.shouldHave(exactText("Неверный формат"));
     }
 
-    public void unformattedMonth() {
+    public void checkUnformattedMonth() {
         invalidMonth.shouldBe(Condition.visible);
         invalidMonth.shouldHave(exactText("Неверный формат"));
     }
 
-    public void invalidMonth() {
+    public void checkInvalidMonth() {
         invalidMonth.shouldBe(Condition.visible);
         invalidMonth.shouldHave(exactText("Неверно указан срок действия карты"));
     }
 
-    public void unformattedYear() {
+    public void checkUnformattedYear() {
         invalidYear.shouldBe(Condition.visible);
         invalidYear.shouldHave(exactText("Неверный формат"));
     }
 
-    public void expiredСard() {
+    public void checkCardExpiration() {
         invalidYear.shouldBe(Condition.visible);
         invalidYear.shouldHave(exactText("Истёк срок действия карты"));
     }
 
-    public void invalidName() {
+    public void checkInvalidName() {
         invalidOwner.shouldBe(Condition.visible);
         invalidOwner.shouldHave(exactText("Неверный формат"));
     }
 
 
-    public void invalidCVC() {
+    public void checkInvalidCVC() {
         errorCVC.shouldBe(Condition.visible);
         errorCVC.shouldHave(exactText("Неверный формат"));
     }
 
-    public void emptyNumber() {
+    public void checkEmptyNumber() {
         invalidCardNumber.shouldBe(Condition.visible);
         invalidCardNumber.shouldHave(exactText("Поле обязательно для заполнения"));
     }
 
-    public void emptyMonth() {
+    public void checkEmptyMonth() {
         invalidMonth.shouldBe(Condition.visible);
         invalidMonth.shouldHave(exactText("Поле обязательно для заполнения"));
     }
 
-    public void emptyYear() {
+    public void checkEmptyYear() {
         invalidYear.shouldBe(Condition.visible);
         invalidYear.shouldHave(exactText("Поле обязательно для заполнения"));
     }
 
-    public void emptyName() {
+    public void checkEmptyName() {
         invalidOwner.shouldBe(Condition.visible);
         invalidOwner.shouldHave(exactText("Поле обязательно для заполнения"));
     }
 
-    public void emptyCVC() {
+    public void checkEmptyCVC() {
         errorCVC.shouldBe(Condition.visible);
         errorCVC.shouldHave(exactText("Поле обязательно для заполнения"));
     }
