@@ -52,126 +52,126 @@ class PurchaseTest {
 
         @Test
         void shouldPaymentWithApprovedCard() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(approvedNumber, month, year, name, CVC);
-            paymentPage.successfulPayment();
-            String status = DbInteraction.paymentStatus();
+            paymentPage.checkPaymentSuccess();
+            String status = DbInteraction.getPaymentStatus();
             assertEquals("APPROVED", status);
         }
 
         @Test
         void shouldPaymentWithDeclinedCard() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(declinedNumber, month, year, name, CVC);
-            paymentPage.paymentDeclined();
-            String status = DbInteraction.paymentStatus();
+            paymentPage.checkPaymentDeclined();
+            String status = DbInteraction.getPaymentStatus();
             assertEquals("DECLINED", status);
         }
 
         @Test
         void shouldPaymentByCardWithUnformattedNumber() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(unformatNumber, month, year, name, CVC);
-            paymentPage.unformattedNumber();
+            paymentPage.checkUnformattedNumber();
         }
 
         @Test
         void shouldPaymentByCardWithUnformattedMonth() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(approvedNumber, unformatMonth, year, name, CVC);
-            paymentPage.unformattedMonth();
+            paymentPage.checkUnformattedMonth();
         }
 
         @Test
         void shouldPaymentByCardWithInvalidMonth() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(approvedNumber, incorrectMonth, year, name, CVC);
-            paymentPage.invalidMonth();
+            paymentPage.checkInvalidMonth();
         }
 
         @Test
         void shouldPaymentByCardWithUnformattedYear() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(approvedNumber, month, unformatYear, name, CVC);
-            paymentPage.unformattedYear();
+            paymentPage.checkUnformattedYear();
         }
 
         @Test
         void shouldPaymentWithExpiredCard() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(approvedNumber, month, expiredDate, name, CVC);
-            paymentPage.expiredСard();
+            paymentPage.checkCardExpiration();
         }
 
         @Test
         void shouldPaymentByCardWithInvalidOwner() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(approvedNumber, month, year, incorrectName, CVC);
-            paymentPage.invalidName();
+            paymentPage.checkInvalidName();
         }
 
         @Test
         void shouldPaymentByCardWithInvalidCVC() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(approvedNumber, month, year, name, incorrectCVC);
-            paymentPage.invalidCVC();
+            paymentPage.checkInvalidCVC();
         }
 
         @Test
         void shouldPaymentByCardWithEmptyNumber() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(blankNumber, month, year, name, CVC);
-            paymentPage.emptyNumber();
+            paymentPage.checkEmptyNumber();
         }
 
         @Test
         void shouldPaymentByCardWithEmptyMonth() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(approvedNumber, blankMonth, year, name, CVC);
-            paymentPage.emptyMonth();
+            paymentPage.checkEmptyMonth();
         }
 
         @Test
         void shouldPaymentByCardWithEmptyYear() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(approvedNumber, month, blankYear, name, CVC);
-            paymentPage.emptyYear();
+            paymentPage.checkEmptyYear();
         }
 
         @Test
         void shouldPaymentByCardWithEmptyOwner() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(approvedNumber, month, year, blankName, CVC);
-            paymentPage.emptyName();
+            paymentPage.checkEmptyName();
         }
 
         @Test
         void shouldPaymentByCardWithEmptyCVC() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(approvedNumber, month, year, name, blankCVC);
-            paymentPage.emptyCVC();
+            paymentPage.checkEmptyCVC();
         }
 
         @Test
         void shouldSubmittingFormWithInvalidData() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput(unformatNumber, incorrectMonth, expiredDate, incorrectName, incorrectCVC);
-            paymentPage.unformattedNumber();
-            paymentPage.invalidMonth();
-            paymentPage.expiredСard();
-            paymentPage.invalidName();
-            paymentPage.invalidCVC();
+            paymentPage.checkUnformattedNumber();
+            paymentPage.checkInvalidMonth();
+            paymentPage.checkCardExpiration();
+            paymentPage.checkInvalidName();
+            paymentPage.checkInvalidCVC();
         }
 
         @Test
         void shouldSubmittingEmptyForm() {
-            paymentPage.buy();
+            paymentPage.checkPayment();
             paymentPage.dataInput("", "", "", "", "");
-            paymentPage.emptyNumber();
-            paymentPage.emptyMonth();
-            paymentPage.emptyYear();
-            paymentPage.emptyName();
-            paymentPage.emptyCVC();
+            paymentPage.checkEmptyNumber();
+            paymentPage.checkEmptyMonth();
+            paymentPage.checkEmptyYear();
+            paymentPage.checkEmptyName();
+            paymentPage.checkEmptyCVC();
         }
     }
 
@@ -181,126 +181,126 @@ class PurchaseTest {
 
         @Test
         void shouldPaymentWithApprovedCreditCard() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(approvedNumber, month, year, name, CVC);
-            paymentPage.successfulPayment();
-            String status = DbInteraction.creditStatus();
+            paymentPage.checkPaymentSuccess();
+            String status = DbInteraction.getCreditStatus();
             assertEquals("APPROVED", status);
         }
 
         @Test
         void shouldPaymentWithDeclinedCreditCard() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(declinedNumber, month, year, name, CVC);
-            paymentPage.paymentDeclined();
-            String status = DbInteraction.creditStatus();
+            paymentPage.checkPaymentDeclined();
+            String status = DbInteraction.getCreditStatus();
             assertEquals("DECLINED", status);
         }
 
         @Test
         void shouldPaymentByCreditCardWithUnformattedNumber() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(unformatNumber, month, year, name, CVC);
-            paymentPage.unformattedNumber();
+            paymentPage.checkUnformattedNumber();
         }
 
         @Test
         void shouldPaymentByCreditCardWithUnformattedMonth() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(approvedNumber, unformatMonth, year, name, CVC);
-            paymentPage.unformattedMonth();
+            paymentPage.checkUnformattedMonth();
         }
 
         @Test
         void shouldPaymentByCreditCardWithInvalidMonth() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(approvedNumber, incorrectMonth, year, name, CVC);
-            paymentPage.invalidMonth();
+            paymentPage.checkInvalidMonth();
         }
 
         @Test
         void shouldPaymentByCreditCardWithUnformattedYear() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(approvedNumber, month, unformatYear, name, CVC);
-            paymentPage.unformattedYear();
+            paymentPage.checkUnformattedYear();
         }
 
         @Test
         void shouldPaymentWithExpiredCreditCard() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(approvedNumber, month, expiredDate, name, CVC);
-            paymentPage.expiredСard();
+            paymentPage.checkCardExpiration();
         }
 
         @Test
         void shouldPaymentByCreditCardWithInvalidOwner() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(approvedNumber, month, year, incorrectName, CVC);
-            paymentPage.invalidName();
+            paymentPage.checkInvalidName();
         }
 
         @Test
         void shouldPaymentByCreditCardWithInvalidCVC() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(approvedNumber, month, year, name, incorrectCVC);
-            paymentPage.invalidCVC();
+            paymentPage.checkInvalidCVC();
         }
 
         @Test
         void shouldPaymentByCreditCardWithEmptyNumber() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(blankNumber, month, year, name, CVC);
-            paymentPage.emptyNumber();
+            paymentPage.checkEmptyNumber();
         }
 
         @Test
         void shouldPaymentByCreditCardWithEmptyMonth() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(approvedNumber, blankMonth, year, name, CVC);
-            paymentPage.emptyMonth();
+            paymentPage.checkEmptyMonth();
         }
 
         @Test
         void shouldPaymentByCreditCardWithEmptyYear() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(approvedNumber, month, blankYear, name, CVC);
-            paymentPage.emptyYear();
+            paymentPage.checkEmptyYear();
         }
 
         @Test
         void shouldPaymentByCreditCardWithEmptyOwner() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(approvedNumber, month, year, blankName, CVC);
-            paymentPage.emptyName();
+            paymentPage.checkEmptyName();
         }
 
         @Test
         void shouldPaymentByCreditCardWithEmptyCVC() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(approvedNumber, month, year, name, blankCVC);
-            paymentPage.emptyCVC();
+            paymentPage.checkEmptyCVC();
         }
 
         @Test
         void shouldSubmittingCreditFormWithInvalidData() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput(unformatNumber, incorrectMonth, expiredDate, incorrectName, incorrectCVC);
-            paymentPage.unformattedNumber();
-            paymentPage.invalidMonth();
-            paymentPage.expiredСard();
-            paymentPage.invalidName();
-            paymentPage.invalidCVC();
+            paymentPage.checkUnformattedNumber();
+            paymentPage.checkInvalidMonth();
+            paymentPage.checkCardExpiration();
+            paymentPage.checkInvalidName();
+            paymentPage.checkInvalidCVC();
         }
 
         @Test
         void shouldSubmittingEmptyCreditForm() {
-            paymentPage.buyOnCredit();
+            paymentPage.checkPaymentOnCredit();
             paymentPage.dataInput("", "", "", "", "");
-            paymentPage.emptyNumber();
-            paymentPage.emptyMonth();
-            paymentPage.emptyYear();
-            paymentPage.emptyName();
-            paymentPage.emptyCVC();
+            paymentPage.checkEmptyNumber();
+            paymentPage.checkEmptyMonth();
+            paymentPage.checkEmptyYear();
+            paymentPage.checkEmptyName();
+            paymentPage.checkEmptyCVC();
         }
     }
 }
