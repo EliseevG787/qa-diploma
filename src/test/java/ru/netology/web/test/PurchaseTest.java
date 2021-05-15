@@ -57,6 +57,7 @@ class PurchaseTest {
             paymentPage.checkPaymentSuccess();
             String status = DbInteraction.getPaymentStatus();
             assertEquals("APPROVED", status);
+            assertEquals(DbInteraction.getTransaction_id(), DbInteraction.getPayment_id());
             String amount = DbInteraction.getPaymentAmount();
             assertEquals("45000", amount);
         }
@@ -188,6 +189,7 @@ class PurchaseTest {
             paymentPage.checkPaymentSuccess();
             String status = DbInteraction.getCreditStatus();
             assertEquals("APPROVED", status);
+            assertEquals(DbInteraction.getBank_id(), DbInteraction.getCredit_id());
         }
 
         @Test
