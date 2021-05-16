@@ -48,12 +48,12 @@ public class DataHelper {
     }
 
     public static String getInvalidOwner() {
-        Faker faker = new Faker(new Locale("en"));
+        Faker faker = new Faker(new Locale("ru"));
         return faker.name().fullName();
     }
 
     public static String getValidOwner() {
-        Faker faker = new Faker(new Locale("ru"));
+        Faker faker = new Faker(new Locale("en"));
         return faker.name().fullName();
     }
 
